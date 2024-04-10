@@ -22,7 +22,12 @@ jobs:
           uses: actions/setup-node@v3
           with:
             node-version: 20
-    
+
+        - name: Cache NPM dependencies
+          uses: actions/cache@v3
+          key: ${{ runner.os }}-node-${{ hashFiles(./package-lock.json) }}
+          path: ~/.npm
+          
         - name: Install Dependencies
           run: npm install
     
